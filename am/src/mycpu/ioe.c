@@ -18,6 +18,7 @@ static void *lut[128] = {
   [AM_TIMER_UPTIME] = __am_timer_uptime,
   [AM_INPUT_CONFIG] = __am_input_config,
   [AM_INPUT_KEYBRD] = __am_input_keybrd,
+  // [AM_UART_TX]      = __am_uartlite_putchar,
 };
 
 static void fail(void *buf) { panic("access nonexist register"); }

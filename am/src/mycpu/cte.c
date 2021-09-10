@@ -4,9 +4,15 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
+  printf("enter irq_handle\n");
+  // printf("c->cause: %lx \n", c->cause);
+  // printf("c->epc: %lx \n", c->epc);
+  // printf("c->status: %lx \n", c->status);
   if (user_handler) {
     Event ev = {0};
     switch (c->cause) {
+      case 0x8000000000000007: ev.event = EVENT_IRQ_TIMER; break;
+      case 11: ev.event = EVENT_YIELD; break;
       default: ev.event = EVENT_ERROR; break;
     }
 
